@@ -1,0 +1,43 @@
+:root {
+  --items-count: 9;
+  --width: 80px;
+  --height: 100px;
+  --duration: 20s;
+}
+
+.slider {
+  width: 100%;
+  height: var(--height);
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #fff 10% 90%, transparent);
+  margin: 0 auto;
+}
+
+.slider:hover img {
+  animation-play-state: paused;
+}
+
+.slider img {
+  position: absolute;
+  border-radius: 10px;
+  width: var(--width);
+  height: var(--height);
+  object-fit: cover; /* Utilisez "cover" pour éviter la déformation */
+  left: 100%;
+  animation: autoRunSlider var(--duration) linear infinite;
+  animation-delay: calc((var(--pos) - 1) * (var(--duration) / var(--items-count)));
+}
+
+.slider img:hover {
+  filter: grayscale(0);
+}
+
+@keyframes autoRunSlider {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: calc(-1 * var(--width)); /* Défilement jusqu'à la gauche */
+  }
+}

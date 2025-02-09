@@ -1,0 +1,26 @@
+main{
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    
+    height: 100vh;
+    .add{
+        width: 233px;
+        height: 38px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(168, 194, 151, 0.7);
+        border-radius: 15px;
+        margin: 0 auto;
+        padding: 10px ;
+        .icon{
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .add:hover {
+        background-color: #A8C297;
+    }
+}

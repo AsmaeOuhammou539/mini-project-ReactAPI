@@ -1,0 +1,16 @@
+@import './auth.scss';
+
+.signup-page {
+    @extend .auth-page;
+}
+
+.signup-container {
+    @extend .auth-container;
+}
+
+.signup-form {
+    @extend .auth-form;
+}
+.image-login {
+    @extend .auth-image;
+}

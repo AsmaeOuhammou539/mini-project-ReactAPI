@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    margin: 20px;
+    padding: 15px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    gap: 10px; // Ajout pour éviter que les éléments soient trop collés
+
+    .category-item {
+        width: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer; // Ajout pour montrer que c'est cliquable
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; // 50% pour assurer un rond parfait
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5; // Ajout d'une couleur de fond légère
+            transition: background-color 0.3s ease;
+
+            .icon {
+                width: 30px;
+            }
+        }
+
+        p {
+            margin-top: 5px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        &:hover p,
+        &.active p {
+            border-bottom: 3px solid #EB8426;
+            color: #EB8426;
+        }
+
+        &:hover .icon-container,
+        &.active .icon-container {
+            background-color: rgba(235, 132, 38, 0.2); // Effet de survol avec une légère coloration
+        }
+    }
+}

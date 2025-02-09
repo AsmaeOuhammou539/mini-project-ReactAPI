@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.Ajouter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(168, 194, 151, 0.7);
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+
+        h1 {
+            color: #607D51;
+            font-size: 24px;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+            }
+
+            p {
+                color: #3E3E3E;
+                font-size: 14px;
+                margin: 0;
+            }
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 800px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+        .form-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            .form-left, 
+            .form-right {
+                flex: 1;
+            }
+        }
+
+        label {
+            font-size: 16px;
+            color: #3E3E3E;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            background-color: rgba(217, 217, 217, 0.3);
+            border: none;
+            border-radius: 9px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: rgba(217, 217, 217, 0.3);
+            width: 100%;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                transform: scale(1.02);
+            }
+
+            &:hover {
+                background-color: rgba(200, 200, 200, 0.7);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #607D51;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+
+            img {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+
+            &:hover {
+                background-color: #51557d;
+                transform: translateY(-2px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+}

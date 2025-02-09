@@ -1,0 +1,572 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: rgba(168, 194, 151, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+header h1 {
+  color: #607D51;
+}
+header .search {
+  background-color: white;
+  border-radius: 50px;
+  width: 760px;
+  height: 48px;
+  padding: 0 30px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .search .cat {
+  width: 154px;
+  height: 32px;
+  background-color: #f5f6f8;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3E3E3E;
+  font-size: 12px;
+  cursor: pointer;
+}
+header .search .cat:hover {
+  border: 1px solid black;
+}
+header .search input {
+  color: #9A9A9A;
+  font-size: 12px;
+  border: none;
+  width: 100%;
+  height: 32px;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+header .search input:focus {
+  outline: none;
+}
+header .Account {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+header .Account img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+header .Account p {
+  color: #3E3E3E;
+  font-size: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  margin: 20px;
+  padding: 15px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  gap: 10px;
+}
+nav .category-item {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+nav .category-item .icon-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+nav .category-item .icon-container .icon {
+  width: 30px;
+}
+nav .category-item p {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+nav .category-item:hover p, nav .category-item.active p {
+  border-bottom: 3px solid #EB8426;
+  color: #EB8426;
+}
+nav .category-item:hover .icon-container, nav .category-item.active .icon-container {
+  background-color: rgba(235, 132, 38, 0.2);
+}
+
+img {
+  width: 20px;
+  height: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+main .add {
+  width: 233px;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(168, 194, 151, 0.7);
+  border-radius: 15px;
+  margin: 0 auto;
+  padding: 10px;
+}
+main .add .icon {
+  width: 30px;
+  height: 30px;
+}
+main .add:hover {
+  background-color: #A8C297;
+}
+
+:root {
+  --items-count: 9;
+  --width: 80px;
+  --height: 100px;
+  --duration: 20s;
+}
+
+.slider {
+  width: 100%;
+  height: var(--height);
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #fff 10% 90%, transparent);
+  margin: 0 auto;
+}
+
+.slider:hover img {
+  animation-play-state: paused;
+}
+
+.slider img {
+  position: absolute;
+  border-radius: 10px;
+  width: var(--width);
+  height: var(--height);
+  object-fit: cover; /* Utilisez "cover" pour éviter la déformation */
+  left: 100%;
+  animation: autoRunSlider var(--duration) linear infinite;
+  animation-delay: calc((var(--pos) - 1) * var(--duration) / var(--items-count));
+}
+
+.slider img:hover {
+  filter: grayscale(0);
+}
+
+@keyframes autoRunSlider {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: calc(-1 * var(--width)); /* Défilement jusqu'à la gauche */
+  }
+}
+.product-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+.product-grid .subCat {
+  color: #323334;
+  font-weight: bold;
+  font-size: 44px;
+  margin-bottom: 0;
+  line-height: 1;
+}
+.product-grid .product-list {
+  display: flex;
+  flex-direction: row;
+}
+.product-grid .product-list .product-card {
+  width: 200px;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.product-grid .product-list .product-card .product-image {
+  margin: 5px auto;
+}
+.product-grid .product-list .product-card .product-image img {
+  width: 184px;
+  height: 184px;
+  border-radius: 5px;
+}
+.product-grid .product-list .product-card .product-info {
+  margin: 0;
+  line-height: 0.4;
+}
+.product-grid .product-list .product-card .product-info h3 {
+  margin-top: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.Ajouter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Ajouter header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(168, 194, 151, 0.7);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.Ajouter header h1 {
+  color: #607D51;
+  font-size: 24px;
+}
+.Ajouter header div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.Ajouter header div img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.Ajouter header div p {
+  color: #3E3E3E;
+  font-size: 14px;
+  margin: 0;
+}
+.Ajouter form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.Ajouter form .form-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.Ajouter form .form-columns .form-left,
+.Ajouter form .form-columns .form-right {
+  flex: 1;
+}
+.Ajouter form label {
+  font-size: 16px;
+  color: #3E3E3E;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.Ajouter form input,
+.Ajouter form textarea,
+.Ajouter form select {
+  background-color: rgba(217, 217, 217, 0.3);
+  border: none;
+  border-radius: 9px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: rgba(217, 217, 217, 0.3);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+.Ajouter form input:focus,
+.Ajouter form textarea:focus,
+.Ajouter form select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+.Ajouter form input:hover,
+.Ajouter form textarea:hover,
+.Ajouter form select:hover {
+  background-color: rgba(200, 200, 200, 0.7);
+}
+.Ajouter form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.Ajouter form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #607D51;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+.Ajouter form button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.Ajouter form button:hover {
+  background-color: #51557d;
+  transform: translateY(-2px);
+}
+.Ajouter form button:active {
+  transform: translateY(0);
+}
+
+.auth-page, .signup-page, .login-page {
+  background: linear-gradient(135deg, #6b8e5e, #a3c585);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-container, .signup-container, .login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  max-width: 90%;
+}
+
+.auth-form, .signup-form, .section1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+  margin-right: 20px;
+  width: 100%;
+}
+.auth-form h1, .signup-form h1, .section1 h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.auth-form p, .signup-form p, .section1 p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.auth-form a, .signup-form a, .section1 a {
+  color: #2f5733;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+.auth-form a:hover, .signup-form a:hover, .section1 a:hover {
+  color: #fff;
+}
+.auth-form label, .signup-form label, .section1 label {
+  font-size: 16px;
+  font-weight: 500;
+}
+.auth-form input, .signup-form input, .section1 input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+.auth-form input::placeholder, .signup-form input::placeholder, .section1 input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.auth-form input:focus, .signup-form input:focus, .section1 input:focus {
+  background: rgba(255, 255, 255, 0.4);
+}
+.auth-form .button-group, .signup-form .button-group, .section1 .button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+.auth-form .button-group button, .signup-form .button-group button, .section1 .button-group button {
+  flex: 1;
+  background: #2f5733;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.auth-form .button-group button:hover, .signup-form .button-group button:hover, .section1 .button-group button:hover {
+  background: #1e3b22;
+  transform: scale(1.05);
+}
+
+.auth-image, .image-login {
+  flex: 1;
+  max-width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.auth-page, .signup-page, .login-page {
+  background: linear-gradient(135deg, #6b8e5e, #a3c585);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-container, .signup-container, .login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  max-width: 90%;
+}
+
+.auth-form, .signup-form, .section1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+  margin-right: 20px;
+  width: 100%;
+}
+.auth-form h1, .signup-form h1, .section1 h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.auth-form p, .signup-form p, .section1 p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.auth-form a, .signup-form a, .section1 a {
+  color: #2f5733;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+.auth-form a:hover, .signup-form a:hover, .section1 a:hover {
+  color: #fff;
+}
+.auth-form label, .signup-form label, .section1 label {
+  font-size: 16px;
+  font-weight: 500;
+}
+.auth-form input, .signup-form input, .section1 input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  outline: none;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
+.auth-form input::placeholder, .signup-form input::placeholder, .section1 input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.auth-form input:focus, .signup-form input:focus, .section1 input:focus {
+  background: rgba(255, 255, 255, 0.4);
+}
+.auth-form .button-group, .signup-form .button-group, .section1 .button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+.auth-form .button-group button, .signup-form .button-group button, .section1 .button-group button {
+  flex: 1;
+  background: #2f5733;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.auth-form .button-group button:hover, .signup-form .button-group button:hover, .section1 .button-group button:hover {
+  background: #1e3b22;
+  transform: scale(1.05);
+}
+
+.auth-image, .image-login {
+  flex: 1;
+  max-width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/*# sourceMappingURL=main.css.map */
