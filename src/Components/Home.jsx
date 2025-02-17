@@ -32,8 +32,8 @@ function Home() {
     try {
       const url = `http://localhost:8000/api/categories`;
       const resp = await axios.get(url);
-      const catNames = resp.data.map((cat) => cat.name);
-      setCategories(catNames);
+      setCategories(resp.data); // Directement un tableau d'objets { id, name }
+      console.log(resp.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des catégories :', error);
     }
@@ -50,13 +50,16 @@ function Home() {
   const handleAllCategoryClick = () => {
     setActiveIndex(null);
   };
+  // const token = localStorage.getItem('token');
+  // console.log(token);
+  
 
   const handleAddAnnouncement = () => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     } else {
-      navigate('/Ajouter');
+      navigate('/Ajouter', { state: { categories } }); // Transmet un tableau d'objets { id, name }
     }
   };
 
@@ -77,7 +80,7 @@ function Home() {
       );
 
       if (response.status === 200) {
-        localStorage.removeItem("token"); // Supprime le token
+        localStorage.removeItem("token"); 
         navigate("/");
       }
     } catch (error) {
@@ -115,15 +118,15 @@ function Home() {
         {categories.map((cat, index) => {
           const { icon, color } = iconsAndColors[index] || {};
           return (
-            <div key={index} className="category-item">
+            <div key={cat.id} className="category-item">
               <div className="icon-container" style={{ backgroundColor: color || '#ddd' }}>
-                {icon && <img className="icon" src={icon} alt={`Icone de ${cat}`} />}
+                {icon && <img className="icon" src={icon} alt={`Icone de ${cat.name}`} />}
               </div>
               <p
-                onClick={() => handleCategoryClick(index + 1)}
-                className={activeIndex === index + 1 ? 'active' : ''}
+                onClick={() => handleCategoryClick(cat.id)}
+                className={activeIndex === cat.id ? 'active' : ''}
               >
-                {cat}
+                {cat.name}
               </p>
             </div>
           );

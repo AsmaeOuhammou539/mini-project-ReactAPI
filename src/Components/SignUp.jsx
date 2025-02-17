@@ -175,8 +175,8 @@ function SignUp() {
           {error && <p className="error-message">{error}</p>}
           <form onSubmit={handleSubmit}>{renderFormStep()}</form>
         </div>
-        <img className="auth-image" src="login2.jpg" alt="Sign Up Illustration" />
-      </div>
+        <img className="auth-image" src="login3.jpg" alt="Login Illustration" />
+        </div>
     </div>
   );
 }

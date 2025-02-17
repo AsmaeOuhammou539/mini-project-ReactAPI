@@ -13,8 +13,10 @@ function Content2({ activeIndex }) {
                     'Cache-Control': 'no-cache',
                 },
             });
+            console.log('Données reçues depuis l\'API :', resp.data);
+
             console.log('Sous-catégories et produits reçus pour la catégorie:', activeIndex, resp.data);
-            
+
             // Vérification et mise à jour des sous-catégories avec leurs produits
             if (resp.data.subcategories) {
                 setSubCategoriesWithProducts(resp.data.subcategories);
@@ -48,10 +50,7 @@ function Content2({ activeIndex }) {
                                 {subCategory.products.map((product) => (
                                     <div className="product-card" key={product.id}>
                                         <div className="product-image">
-                                            <img
-                                                src={product.image_url || 'https://via.placeholder.com/150'}
-                                                alt={product.name || 'Produit'}
-                                            />
+                                        <img src={`http://localhost:8000/storage/${product.image_url}`} alt={product.name || 'Produit'} />
                                         </div>
                                         <div className="product-info">
                                             <p>{product.name || 'Nom non disponible'}</p>
