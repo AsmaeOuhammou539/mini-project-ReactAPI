@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Content1 from './Content1';
-import Content2 from './Content2';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Content1 from "./Content1";
+import Content2 from "./Content2";
 
 function Home() {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); // État pour la recherche
   const location = useLocation();
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
-  const name = location.state?.name || "Compte"; // Valeur par défaut
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
-
+  const name = location.state?.name || "Asmae";
   const iconsAndColors = [
     { icon: '/icons/C.png', color: '#B7B7B7' },
     { icon: '/icons/H.png', color: '#ECDDCA' },
@@ -27,21 +25,42 @@ function Home() {
     { icon: '/icons/G.png', color: '#60625F' },
     { icon: '/icons/F.png', color: '#607D51' },
   ];
+  useEffect(() => {
+    fetchCategories();
+    fetchProducts();
+  }, []);
 
   const fetchCategories = async () => {
     try {
-      const url = `http://localhost:8000/api/categories`;
-      const resp = await axios.get(url);
-      setCategories(resp.data); // Directement un tableau d'objets { id, name }
-      console.log(resp.data);
+      const resp = await axios.get("http://localhost:8000/api/categories");
+      setCategories(resp.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des catégories :', error);
+      console.error("Erreur lors de la récupération des catégories :", error);
     }
   };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  const fetchProducts = async () => {
+    try {
+      const resp = await axios.get("http://localhost:8000/api/products");
+      setProducts(resp.data);
+      setFilteredProducts(resp.data); // Initialisation avec tous les produits
+    } catch (error) {
+      console.error("Erreur lors de la récupération des produits :", error);
+    }
+  };
+
+  // Fonction de filtrage des produits
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    // Filtrer les produits en fonction du terme de recherche
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredProducts(filtered);
+  };
 
   const handleCategoryClick = (index) => {
     setActiveIndex(index);
@@ -50,10 +69,6 @@ function Home() {
   const handleAllCategoryClick = () => {
     setActiveIndex(null);
   };
-  // const token = localStorage.getItem('token');
-  // console.log(token);
-  
-
   const handleAddAnnouncement = () => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -62,32 +77,6 @@ function Home() {
       navigate('/Ajouter', { state: { categories } }); // Transmet un tableau d'objets { id, name }
     }
   };
-
-  const handleLogout = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error("Aucun token trouvé.");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/logout",
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      if (response.status === 200) {
-        localStorage.removeItem("token"); 
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Erreur lors de la déconnexion :", error);
-    }
-  };
-
   return (
     <>
       <header>
@@ -96,24 +85,52 @@ function Home() {
           <div className="cat" onClick={handleAllCategoryClick}>
             All categories
           </div>
-          <input type="text" placeholder="Search anything" />
+          <input
+            type="text"
+            placeholder="Search anything"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
           <img src="/icons/chercher.png" alt="Search" />
         </div>
         <div className="Account" onClick={() => setShowOptions(!showOptions)}>
-          <p>
-            {localStorage.getItem('token') ? name : <Link to="/login">Login</Link>}
+          <p className="name">
+            {localStorage.getItem("token") ? name : <Link to="/login" className="name">Login</Link>}
           </p>
           {showOptions && (
-            <div className="account-options">
-              <p><Link to="/login">Login</Link></p>
-              <p><Link to="/change-password">Modifier le mot de passe</Link></p>
-              <p onClick={handleLogout} style={{ cursor: "pointer" }}>Se déconnecter</p>
-            </div>
+            <aside>
+              {!localStorage.getItem("token") ? (
+                <div className="element1">
+                  <Link className="text" to="/login">Login</Link>
+                </div>
+              ) : (
+                <>
+                  <div className="element1">
+                    <Link className="text" to="/user-product">Mes produits</Link>
+                  </div>
+                  <div className="element1">
+                    <Link className="text" to="/password">Password</Link>
+                  </div>
+                  <div className="element1">
+                    <p onClick={() => { 
+                        localStorage.removeItem("token");
+                        navigate("/");
+                      }} className="text">Logout</p>
+                  </div>
+                </>
+              )}
+            </aside>
           )}
-        </div>
-        <img src="/icons/coeur.png" alt="Favorites" />
-      </header>
 
+          </div>
+        
+          <Link to="/favorites">
+            <img src="/icons/coeur.png" alt="Favorites" />
+          </Link>      
+        </header>
+      
+      {/* Ajout de la navigation */}
+      <div className="global-container">
       <nav>
         {categories.map((cat, index) => {
           const { icon, color } = iconsAndColors[index] || {};
@@ -134,14 +151,24 @@ function Home() {
       </nav>
 
       <main>
-        <div className="add" onClick={handleAddAnnouncement}>
+      <div className="add" onClick={handleAddAnnouncement}>
           <img className="icon" src="/icons/J.png" alt="add" />
           <p>Déposer une annonce</p>
         </div>
         <div className="content">
-          {activeIndex ? <Content2 activeIndex={activeIndex} /> : <Content1 />}
+          <main>
+            <div className="content">
+              {activeIndex ? (
+                <Content2 activeIndex={activeIndex} />
+              ) : (
+                <Content1 products={searchTerm ? filteredProducts : products} categories={categories} />
+              )}
+            </div>
+          </main>
+
         </div>
       </main>
+      </div>
     </>
   );
 }

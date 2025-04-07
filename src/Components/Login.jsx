@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState('dev.ou@gmail.com');
-  const [password, setPassword] = useState('Asmae1976');
+  const [email, setEmail] = useState('asmae@gmail.com');
+  const [password, setPassword] = useState('asmae123456');
   const [name, setName] = useState('');
   const navigate = useNavigate();
 

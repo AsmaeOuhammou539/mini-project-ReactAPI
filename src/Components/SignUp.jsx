@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const [step, setStep] = useState(1);
@@ -11,6 +12,7 @@ function SignUp() {
     ville: '',
     phone_number: '',
   });
+  const navigate=useNavigate()
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -62,6 +64,8 @@ function SignUp() {
       });
       console.log('Réponse du serveur:', response.data);
       alert('Inscription réussie !');
+      navigate('/login');
+      
     } catch (error) {
       console.error('Erreur:', error);
       if (error.response) {

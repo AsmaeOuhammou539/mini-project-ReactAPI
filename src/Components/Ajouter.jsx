@@ -82,9 +82,9 @@ function Ajouter() {
     <div className='Ajouter'>
       <header>
         <h1>ReVendre</h1>
-        <div>
+        <div className='quitter' onClick={()=>{navigate('/')}}>
           <img src="icons/leave.png" alt="Quitter" />
-          <p>Quitter</p>
+          <p  >Quitter</p>
         </div>
       </header>
       <form onSubmit={handleSubmit}>

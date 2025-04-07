@@ -1,8 +1,10 @@
+.global-container{
+    margin-top: 100px;
+}
 main{
     display: flex;
     flex-direction: column;
     // justify-content: center;
-    
     height: 100vh;
     .add{
         width: 233px;
@@ -11,9 +13,9 @@ main{
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        background-color: rgba(168, 194, 151, 0.7);
+        background-color: #8b9e70;
         border-radius: 15px;
-        margin: 0 auto;
+        margin:0 auto;
         padding: 10px ;
         .icon{
             width: 30px;

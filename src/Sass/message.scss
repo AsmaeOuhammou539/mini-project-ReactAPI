@@ -1,0 +1,290 @@
+// Variables
+$primary-color: #8b9e70;
+$primary-light: lighten($primary-color, 10%);
+$secondary-color: #2e3d4f;
+$light-gray: #f5f5f5;
+$medium-gray: #e0e0e0;
+$dark-gray: #333;
+$white: #fff;
+$error-color: #e74c3c;
+$shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+$border-radius: 8px;
+$transition: all 0.2s ease;
+
+.message-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: $light-gray;
+  position: relative;
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: $white;
+    border-bottom: 1px solid $medium-gray;
+    box-shadow: $shadow;
+    z-index: 10;
+
+    .image {
+      width: 50px;
+      height: 50px;
+      background-color: $medium-gray;
+      border-radius: 50%;
+      margin-right: 1rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: $white;
+      background-color: $primary-color;
+    }
+
+    .user-info {
+      flex: 1;
+      .name {
+        font-weight: 600;
+        margin: 0 0 0.2rem 0;
+        color: $dark-gray;
+        font-size: 1.1rem;
+      }
+      .phone, .ville {
+        margin: 0;
+        color: lighten($dark-gray, 30%);
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .chat {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: $light-gray;
+    background-image: 
+      linear-gradient($medium-gray 1px, transparent 1px),
+      linear-gradient(90deg, $medium-gray 1px, transparent 1px);
+    background-size: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    .product-card-msg {
+      max-width: 60%;
+      margin: 0 0 0 auto;
+      padding: 0.8rem;
+      background-color: $white;
+      border-radius: $border-radius;
+      box-shadow: $shadow;
+      transition: $transition;
+      border: 1px solid $medium-gray;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .image-msg {
+        width: 100%;
+        height: 180px;
+        border-radius: $border-radius;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+        border: 1px solid $medium-gray;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: $transition;
+        }
+      }
+
+      .product-info {
+        p {
+          margin: 0;
+          font-size: 0.9rem;
+          color: $dark-gray;
+          font-weight: 500;
+        }
+
+        h3 {
+          margin: 0.3rem 0 0 0;
+          font-size: 1.1rem;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .messages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .récepteur, .emetteur {
+      position: relative;
+      padding: 0.8rem 1rem;
+      border-radius: $border-radius;
+      max-width: 70%;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      transition: $transition;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    .récepteur {
+      align-self: flex-start;
+      background-color: $white;
+      border-top-left-radius: 0;
+      box-shadow: $shadow;
+      border: 1px solid $medium-gray;
+      color: $dark-gray;
+    }
+
+    .emetteur {
+      align-self: flex-end;
+      background-color: $primary-light;
+      border-top-right-radius: 0;
+      box-shadow: $shadow;
+      color: $white;
+    }
+
+    .supprimer {
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: $transition;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .taper {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: $white;
+    border-top: 1px solid $medium-gray;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+
+    .placeholder {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid $medium-gray;
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      outline: none;
+      transition: $transition;
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+
+      &::placeholder {
+        color: lighten($dark-gray, 40%);
+      }
+    }
+
+    .send-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+      margin-left: 0.8rem;
+      cursor: pointer;
+      transition: $transition;
+      padding: 0.5rem;
+      border-radius: 50%;
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.récepteur, .emetteur {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .message-container {
+    .header {
+      padding: 0.8rem;
+    }
+
+    .chat {
+      padding: 0.8rem;
+      gap: 0.6rem;
+
+      .product-card-msg {
+        max-width: 80%;
+      }
+
+      .récepteur, .emetteur {
+        max-width: 85%;
+        font-size: 0.9rem;
+      }
+    }
+
+    .taper {
+      padding: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .message-container {
+    .header {
+      .image {
+        width: 40px;
+        height: 40px;
+      }
+
+      .user-info {
+        .name {
+          font-size: 1rem;
+        }
+        .phone, .ville {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    .chat {
+      .product-card-msg {
+        max-width: 90%;
+        .image-msg {
+          height: 150px;
+        }
+      }
+    }
+  }
+}
